@@ -96,12 +96,34 @@ python demo/launch.py
 
 ### 可视化效果
 
+**样例1：**
 <p align="center">
-  <img src="assets/comparison_1.png" alt="效果对比1" width="800">
+  <img src="assets/original_1.png" alt="原始影像" width="250">
+  <img src="assets/mask_1.png" alt="真实标签" width="250">
+  <img src="assets/comparison_1.png" alt="预测结果" width="250">
+</p>
+<p align="center">
+  <em>左：原始卫星影像 | 中：真实标签 | 右：模型预测结果</em>
 </p>
 
+**样例2：**
 <p align="center">
-  <img src="assets/comparison_2.png" alt="效果对比2" width="800">
+  <img src="assets/original_2.png" alt="原始影像" width="250">
+  <img src="assets/mask_2.png" alt="真实标签" width="250">
+  <img src="assets/comparison_2.png" alt="预测结果" width="250">
+</p>
+<p align="center">
+  <em>左：原始卫星影像 | 中：真实标签 | 右：模型预测结果</em>
+</p>
+
+**样例3：**
+<p align="center">
+  <img src="assets/original_3.png" alt="原始影像" width="250">
+  <img src="assets/mask_3.png" alt="真实标签" width="250">
+  <img src="assets/comparison_3.png" alt="预测结果" width="250">
+</p>
+<p align="center">
+  <em>左：原始卫星影像 | 中：真实标签 | 右：模型预测结果</em>
 </p>
 
 ## 📁 项目结构
