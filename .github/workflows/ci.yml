@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+        
+    - name: Lint with flake8
+      run: |
+        # 停止构建，如果存在语法错误
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # 显示警告，但不失败
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Test imports
+      run: |
+        python -c "import torch; print('PyTorch version:', torch.__version__)"
+        python -c "import torchvision; print('TorchVision version:', torchvision.__version__)"
+        python -c "import segmentation_models_pytorch as smp; print('SMP version:', smp.__version__)"
+        
+    - name: Check project structure
+      run: |
+        python -c "
+        import os
+        # 检查关键文件是否存在
+        assert os.path.exists('src/train.py'), 'src/train.py not found'
+        assert os.path.exists('src/predict.py'), 'src/predict.py not found'
+        assert os.path.exists('demo/app.py'), 'demo/app.py not found'
+        assert os.path.exists('requirements.txt'), 'requirements.txt not found'
+        assert os.path.exists('README.md'), 'README.md not found'
+        print('All key files exist!')
+        "

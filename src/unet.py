@@ -44,6 +44,17 @@ class Unet(object):
     #   初始化UNET
     # ---------------------------------------------------#
     def __init__(self, **kwargs):
+        """
+        初始化 UNet 模型
+        
+        Args:
+            **kwargs: 模型参数，包括：
+                - model_path: 模型权重路径
+                - backbone: 主干网络类型 (resnet50, vgg, mit_b5, mit_b4)
+                - num_classes: 分类类别数
+                - input_shape: 输入图像尺寸
+                - cuda: 是否使用 CUDA
+        """
         self.__dict__.update(self._defaults)
         for name, value in kwargs.items():
             setattr(self, name, value)
@@ -102,6 +113,17 @@ class Unet(object):
     #   检测图片
     # ---------------------------------------------------#
     def detect_image(self, image, count=False, name_classes=None):
+        """
+        检测图片中的光伏设施
+        
+        Args:
+            image: PIL.Image 输入图像
+            count: bool, 是否统计各类别像素数量
+            name_classes: list, 类别名称列表
+            
+        Returns:
+            PIL.Image: 分割结果图像
+        """
         image = cvtColor(image)
         old_img = copy.deepcopy(image)
         orininal_h = np.array(image).shape[0]
@@ -174,6 +196,16 @@ class Unet(object):
         return image
 
     def get_FPS(self, image, test_interval):
+        """
+        测试模型的 FPS (Frames Per Second)
+        
+        Args:
+            image: PIL.Image 输入图像
+            test_interval: int, 测试次数
+            
+        Returns:
+            float: FPS 值
+        """
         image = cvtColor(image)
         image_data, nw, nh = resize_image(image, (self.input_shape[1], self.input_shape[0]))
         image_data = np.expand_dims(np.transpose(preprocess_input(np.array(image_data, np.float32)), (2, 0, 1)), 0)
@@ -238,6 +270,15 @@ class Unet(object):
         print('Onnx model save as {}'.format(model_path))
 
     def get_miou_png(self, image):
+        """
+        获取 mIoU 评估用的预测结果图
+        
+        Args:
+            image: PIL.Image 输入图像
+            
+        Returns:
+            PIL.Image: 灰度图预测结果，像素值为类别索引
+        """
         image = cvtColor(image)
         orininal_h = np.array(image).shape[0]
         orininal_w = np.array(image).shape[1]
