@@ -96,35 +96,51 @@ python demo/launch.py
 
 ### 可视化效果
 
-**样例1：**
+**MiT-B5 vs ResNet50 对比展示**（MiT-B5 优势明显的样例）：
+
 <p align="center">
-  <img src="assets/original_1.png" alt="原始影像" width="250">
-  <img src="assets/mask_1.png" alt="真实标签" width="250">
-  <img src="assets/comparison_1.png" alt="预测结果" width="250">
+  <img src="assets/rank_03.png" alt="Rank #3 - MiT-B5 完美预测" width="800">
 </p>
 <p align="center">
-  <em>左：原始卫星影像 | 中：真实标签 | 右：模型预测结果</em>
+  <em>Rank #3：MiT-B5 完美预测（IoU 100%），ResNet50 出现误检（IoU 0%）</em>
 </p>
 
-**样例2：**
 <p align="center">
-  <img src="assets/original_2.png" alt="原始影像" width="250">
-  <img src="assets/mask_2.png" alt="真实标签" width="250">
-  <img src="assets/comparison_2.png" alt="预测结果" width="250">
+  <img src="assets/rank_14.png" alt="Rank #14 - MiT-B5 完美预测" width="800">
 </p>
 <p align="center">
-  <em>左：原始卫星影像 | 中：真实标签 | 右：模型预测结果</em>
+  <em>Rank #14：MiT-B5 完美预测（IoU 100%），ResNet50 出现误检（IoU 0%）</em>
 </p>
 
-**样例3：**
 <p align="center">
-  <img src="assets/original_3.png" alt="原始影像" width="250">
-  <img src="assets/mask_3.png" alt="真实标签" width="250">
-  <img src="assets/comparison_3.png" alt="预测结果" width="250">
+  <img src="assets/rank_26.png" alt="Rank #26 - MiT-B5 高精度预测" width="800">
 </p>
 <p align="center">
-  <em>左：原始卫星影像 | 中：真实标签 | 右：模型预测结果</em>
+  <em>Rank #26：MiT-B5 高精度预测（IoU 80.93%），ResNet50 完全漏检（IoU 0%）</em>
 </p>
+
+<p align="center">
+  <img src="assets/rank_33.png" alt="Rank #33 - MiT-B5 明显优势" width="800">
+</p>
+<p align="center">
+  <em>Rank #33：MiT-B5 预测准确（IoU 77.96%），ResNet50 漏检严重（IoU 28.10%）</em>
+</p>
+
+<p align="center">
+  <img src="assets/rank_36.png" alt="Rank #36 - MiT-B5 明显优势" width="800">
+</p>
+<p align="center">
+  <em>Rank #36：MiT-B5 预测准确（IoU 80.63%），ResNet50 对齐偏差大（IoU 47.11%）</em>
+</p>
+
+<p align="center">
+  <img src="assets/rank_40.png" alt="Rank #40 - MiT-B5 明显优势" width="800">
+</p>
+<p align="center">
+  <em>Rank #40：MiT-B5 预测全面（IoU 68.78%），ResNet50 漏检部分目标（IoU 43.25%）</em>
+</p>
+
+> **说明**：以上展示的是 MiT-B5 模型相比 ResNet50 优势最明显的样例（按 IoU 差距排序）。每张对比图包含：原始卫星影像、真实标签、MiT-B5 预测结果、ResNet50 预测结果。
 
 ## 📁 项目结构
 
