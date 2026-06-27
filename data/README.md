@@ -44,14 +44,28 @@ data/sample/
 
 ## 完整数据集获取
 
-### 方式1：比赛官方渠道
+### 方式1：百度网盘下载（推荐）
+
+**完整训练数据集**（1.7GB，包含 4,000 张原始影像 + 4,003 张分割标签）：
+
+- **链接**：https://pan.baidu.com/s/17H0SgdH28JeRyhXP0fjHUw
+- **提取码**：ygrb
+
+**下载后请将数据放到以下目录**：
+```
+data/VOCdevkit/VOC2007/
+├── JPEGImages/          # 将 0train/images/ 中的文件放在这里
+└── SegmentationClass/   # 将 0train/mask/ 中的文件放在这里
+```
+
+### 方式2：比赛官方渠道
 
 如需获取完整数据集，请通过以下方式联系：
 
 - **比赛名称**：第六届国际高分辨率遥感图像智能解译大赛
 - **联系方式**：请通过比赛官方网站或组委会获取
 
-### 方式2：联系作者
+### 方式3：联系作者
 
 如需获取数据集用于学术研究，请联系项目作者：
 - **GitHub Issue**：[提交 Issue](https://github.com/2839181579/SolarPV-Segmentation/issues)
