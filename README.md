@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>🏆 全国一等奖 | 📊 mIoU 92.32% | 🖥️ Streamlit 可视化 Demo</strong>
+  <strong>🏆 第六届国际高分辨率遥感图像智能解译大赛决赛一等奖 | 📊 mIoU 92.32% | 🖥️ Streamlit 可视化 Demo</strong>
 </p>
 
 <p align="center">
@@ -19,10 +19,10 @@
 
 ## 📖 项目简介
 
-本项目为"遥感解译大赛"全国一等奖获奖作品，实现了基于深度学习的光伏设施智能识别系统。
+本项目在**第六届国际高分辨率遥感图像智能解译大赛决赛**中获得**一等奖**，实现了基于深度学习的光伏设施智能识别系统。
 
 **核心亮点：**
-- 🏆 **全国一等奖**：在遥感解译大赛中获得全国一等奖
+- 🏆 **国际大赛一等奖**：第六届国际高分辨率遥感图像智能解译大赛决赛一等奖
 - 📊 **高精度**：mIoU 达到 92.32%（MiT-B5 主干网络）
 - 🖥️ **可视化系统**：基于 Streamlit 的交互式对比与评测平台
 - 📄 **完整资料**：技术报告、海报、PPT 全部开源
@@ -33,7 +33,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourusername/SolarPV-Segmentation.git
+git clone https://github.com/2839181579/SolarPV-Segmentation.git
 cd SolarPV-Segmentation
 
 # 创建虚拟环境（推荐）
@@ -184,15 +184,36 @@ SolarPV-Segmentation/
 - 感谢 [segmentation_models_pytorch](https://github.com/qubvel/segmentation_models.pytorch) 提供的 MiT-B5 主干网络
 - 感谢大赛组委会提供的数据集和评审
 
+## 📝 Citation
+
+如果本项目对你的研究有帮助，请引用：
+
+```bibtex
+@misc{solarpvsegmentation2025,
+  title={SolarPV-Segmentation: Deep Learning-based Solar PV Facility Intelligent Recognition},
+  author={Ma Shaobo},
+  year={2025},
+  howpublished={\url{https://github.com/2839181579/SolarPV-Segmentation}},
+  note={1st Place - 6th International High-Resolution RS Image Interpretation Contest}
+}
+```
+
+或者在你的论文中引用：
+
+```
+Ma Shaobo. SolarPV-Segmentation: Deep Learning-based Solar PV Facility Intelligent Recognition. 
+GitHub Repository, 2025. https://github.com/2839181579/SolarPV-Segmentation
+```
+
 ## 📧 联系方式
 
 如有问题，请通过以下方式联系：
-- 提交 [Issue](https://github.com/yourusername/SolarPV-Segmentation/issues)
-- 邮箱：your.email@example.com
+- 提交 [Issue](https://github.com/2839181579/SolarPV-Segmentation/issues)
+- 邮箱：mashaobo@example.com
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/SolarPV-Segmentation&type=Date)](https://star-history.com/#yourusername/SolarPV-Segmentation&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=2839181579/SolarPV-Segmentation&type=Date)](https://star-history.com/#2839181579/SolarPV-Segmentation&Date)
 
 ---
 
