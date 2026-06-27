@@ -98,8 +98,8 @@ if __name__ == "__main__":
     #   一般来讲，网络从0开始的训练效果会很差，因为权值太过随机，特征提取效果不明显，因此非常、非常、非常不建议大家从0开始训练！
     #   如果一定要从0开始，可以了解imagenet数据集，首先训练分类模型，获得网络的主干部分权值，分类模型的 主干部分 和该模型通用，基于此进行训练。
     #----------------------------------------------------------------------------------------------------------------------------#
-    # model_path  = r"E:\BaiduNetdiskDownload\UNet_Demo\logs\loss_2025_04_05_Res50UNet_80freeze120unfreeze\best_epoch_weights.pth"                      # 进行修改微调
-    model_path  = r"E:\BaiduNetdiskDownload\UNet_Demo\model_data\unet_resnet_voc.pth"                      # 进行修改微调
+    # model_path  = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs", "loss_2025_04_05_Res50UNet_80freeze120unfreeze", "best_epoch_weights.pth")  # 进行修改微调
+    model_path  = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "weights", "unet_resnet_voc.pth")  # 进行修改微调
     #-----------------------------------------------------#
     #   input_shape     输入图片的大小，32的倍数
     #-----------------------------------------------------#

@@ -166,15 +166,18 @@ if 'prediction_done' not in st.session_state:
 # ===========================================================================
 #   【核心配置】默认路径设置
 # ===========================================================================
+# 获取项目根目录
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # 1. 默认模型路径
-DEFAULT_MODEL_A = r"E:\BaiduNetdiskDownload\UNet_Demo\model_data\Mit-B5-UNet-Champion-92-32.pth"
-DEFAULT_MODEL_B = r"E:\BaiduNetdiskDownload\UNet_Demo\model_data\ResNet50-Champion_model_91.83.pth"
+DEFAULT_MODEL_A = os.path.join(PROJECT_ROOT, "weights", "Mit-B5-UNet-Champion-92-32.pth")
+DEFAULT_MODEL_B = os.path.join(PROJECT_ROOT, "weights", "ResNet50-UNet-Champion_model_91.83.pth")
 
 # 2. 默认文件夹路径
-DEFAULT_INPUT_DIR = r"E:\研究生课程\研一上\四维杯\train\images"
-DEFAULT_MASK_DIR = r"E:\研究生课程\研一上\四维杯\train\mask"
-DEFAULT_OUTPUT_DIR = r"E:\研究生课程\研一上\四维杯\predict"
-DEFAULT_EVAL_DIR = r"E:\研究生课程\研一上\四维杯\eval_result"
+DEFAULT_INPUT_DIR = os.path.join(PROJECT_ROOT, "data", "VOCdevkit", "VOC2007", "JPEGImages")
+DEFAULT_MASK_DIR = os.path.join(PROJECT_ROOT, "data", "VOCdevkit", "VOC2007", "SegmentationClass")
+DEFAULT_OUTPUT_DIR = os.path.join(PROJECT_ROOT, "output")
+DEFAULT_EVAL_DIR = os.path.join(PROJECT_ROOT, "eval_result")
 
 # 批量注册 Session State 变量
 defaults = {

@@ -45,7 +45,7 @@ if __name__ == "__main__":
             os.makedirs(pred_dir)
             
         print("Load model.")
-        unet = Unet(model_path=r"E:\BaiduNetdiskDownload\UNet_Demo\logs\loss_2025_04_05_Res50UNet_80freeze120unfreeze\best_epoch_weights.pth", backbone="resnet50", num_classes=2)
+        unet = Unet(model_path=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "weights", "ResNet50-UNet-Champion_model_91.83.pth"), backbone="resnet50", num_classes=2)
         print("Load model done.")
 
         print("Get predict result.")

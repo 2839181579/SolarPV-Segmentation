@@ -5,7 +5,7 @@ import glob
 # -----------------------------------------------------------------------------------
 # [配置] 权重下载路径
 # -----------------------------------------------------------------------------------
-custom_weight_path = r"E:\BaiduNetdiskDownload\UNet_Demo\model_data"
+custom_weight_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "weights")
 if not os.path.exists(custom_weight_path):
     os.makedirs(custom_weight_path)
 os.environ['TORCH_HOME'] = custom_weight_path

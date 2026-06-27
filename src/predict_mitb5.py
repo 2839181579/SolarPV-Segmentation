@@ -22,14 +22,14 @@ if __name__ == "__main__":
     # 【重要】模型权重路径
     # 请将这里修改为你刚才验证过的那个 Epoch 200 的 .pth 文件路径
     # 举例: r"logs\loss_2025_11_30_xxxx\ep200-loss0.222-val_loss0.217.pth"
-    model_path = r"E:\BaiduNetdiskDownload\UNet_Demo\logs\Mit-B5-UNet-Champion-92-32.pth"
+    model_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "weights", "Mit-B5-UNet-Champion-92-32.pth")
 
     # 【重要】输入图片文件夹
-    dir_origin_path = r"E:\BaiduNetdiskDownload\UNet_Demo\VOCdevkit_Competition\VOC2007\JPEGImages"
+    dir_origin_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "VOCdevkit", "VOC2007", "JPEGImages")
 
     # 【重要】结果保存文件夹 (会自动创建)
     # 建议加上 _MiT_B5 后缀以区分
-    dir_save_path = r"E:\BaiduNetdiskDownload\UNet_Demo\img_out\img_out_MiT_B5_Champion_92_32"
+    dir_save_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "output", "predictions_mitb5")
 
     # ===========================================================================
     #   2. 模型加载

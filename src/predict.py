@@ -75,8 +75,8 @@ if __name__ == "__main__":
     #   
     #   dir_origin_path和dir_save_path仅在mode='dir_predict'时有效
     #-------------------------------------------------------------------------#
-    dir_origin_path = r"E:\BaiduNetdiskDownload\UNet_Demo\VOCdevkit_Competition\VOC2007\JPEGImages"
-    dir_save_path   = r"E:\BaiduNetdiskDownload\UNet_Demo\img_out\img_out_UNet_champion_91_83"
+    dir_origin_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "VOCdevkit", "VOC2007", "JPEGImages")
+    dir_save_path   = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "output", "predictions")
     #-------------------------------------------------------------------------#
     #   simplify            使用Simplify onnx
     #   onnx_save_path      指定了onnx的保存路径
