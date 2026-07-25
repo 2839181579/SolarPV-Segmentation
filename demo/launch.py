@@ -23,7 +23,7 @@ print("-" * 50)
 
 # 4. 使用 subprocess 启动 (更稳定，解决中文路径和乱码问题)
 # sys.executable: 自动获取当前 Python 解释器的路径
-# cwd=current_dir: 强制将运行目录设置为当前文件夹，防止找不到 unet.py
+# cwd=project_root: 从项目根目录启动，确保 src/ 与相对资源路径可解析
 try:
     subprocess.run(
         [sys.executable, "-m", "streamlit", "run", ui_filename],
