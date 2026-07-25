@@ -1,48 +1,27 @@
-# ⚖️ 模型权重说明
+# 模型权重说明
 
-## 预训练权重
+训练权重体积较大，不直接纳入 Git 仓库。运行推理或 Streamlit 可视化平台前，请在本地准备权重文件。
 
-本项目提供两个训练好的模型权重：
+| 模型 | 默认文件名 | 项目记录 mIoU | 约占空间 |
+|---|---|---:|---:|
+| UNet-ResNet50 | `ResNet50-UNet-Champion_model_91.83.pth` | 91.83% | 168 MB |
+| UNet-MiT-B5 | `Mit-B5-UNet-Champion-92-32.pth` | 92.32% | 324 MB |
 
-| 模型 | 文件名 | mIoU | 大小 | 下载链接 |
-|------|--------|------|------|----------|
-| UNet-ResNet50 | `ResNet50-UNet-Champion_model_91.83.pth` | 91.83% | 168MB | [百度网盘]() |
-| UNet-MiT-B5 | `Mit-B5-UNet-Champion-92-32.pth` | 92.32% | 324MB | [百度网盘]() |
+将文件放入：
 
-## 使用方式
-
-### 1. 下载权重
-
-从上述链接下载权重文件，放入 `weights/` 目录：
-
-```
+```text
 weights/
 ├── ResNet50-UNet-Champion_model_91.83.pth
 └── Mit-B5-UNet-Champion-92-32.pth
 ```
 
-### 2. 修改代码中的路径
+`demo/app.py` 默认读取以上相对路径，也可以在界面中选择其他本地权重路径。
 
-在相应的脚本中修改权重路径：
+如需从头训练，请先准备数据并运行：
 
-**src/train.py** 或 **src/train_mitb5.py**：
-```python
-# 修改 model_path 指向你的权重文件
-model_path = "weights/ResNet50-UNet-Champion_model_91.83.pth"
+```bash
+python src/train.py
+python src/train_mitb5.py
 ```
 
-**src/predict.py** 或 **src/predict_mitb5.py**：
-```python
-# 修改 model_path 指向你的权重文件
-model_path = "weights/Mit-B5-UNet-Champion-92-32.pth"
-```
-
-## 自己训练权重
-
-如果你想自己训练模型，请参考 [训练指南](../README.md#3-模型训练)。
-
-## 注意事项
-
-1. 权重文件较大，请确保有足够的磁盘空间
-2. 权重仅供学术研究使用，请勿用于商业用途
-3. 使用权重时请引用本项目
+模型结果可能随数据划分、随机种子、硬件与依赖版本略有变化。请遵守比赛数据和模型文件的使用要求。
