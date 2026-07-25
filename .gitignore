@@ -85,6 +85,7 @@ eval_result/
 eval_test/
 img_out/
 test_out/
+output/
 0train/
 model_a_wins_top_k/
 model_b_wins_top_k/
@@ -103,3 +104,4 @@ weights/*.pth
 *.tmp
 *.temp
 *.log
+.streamlit_qa/

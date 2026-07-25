@@ -1,222 +1,154 @@
-# 🌞 SolarPV-Segmentation: 基于深度学习的光伏设施智能识别
+# 🌞 SolarPV-Segmentation
+
+**面向高分辨率遥感影像的光伏设施语义分割、模型评测与可视化平台**
+
+> 🏆 第六届国际高分辨率遥感图像智能解译大赛决赛一等奖  ·  📊 MiT-B5 mIoU 92.32%  ·  🖥️ Streamlit 交互式评测平台
 
 <p align="center">
-  <img src="assets/banner.png" alt="Solar PV Segmentation" width="800">
+  <a href="README_en.md">English</a> ·
+  <a href="#-快速体验">快速体验</a> ·
+  <a href="#-评测结果">评测结果</a> ·
+  <a href="docs/technical_report.pdf">技术报告</a> ·
+  <a href="docs/poster.pdf">项目海报</a>
 </p>
 
 <p align="center">
-  <strong>🏆 第六届国际高分辨率遥感图像智能解译大赛决赛一等奖 | 📊 mIoU 92.32% | 🖥️ Streamlit 可视化 Demo</strong>
+  <img src="assets/interface_overview.png" alt="光伏语义分割模型评测平台界面" width="900">
 </p>
-
-<p align="center">
-  <a href="README_en.md">English</a> •
-  <a href="#-快速开始">快速开始</a> •
-  <a href="#-效果展示">效果展示</a> •
-  <a href="#-citation">引用</a>
-</p>
-
----
 
 ## 📖 项目简介
 
-本项目在**第六届国际高分辨率遥感图像智能解译大赛决赛**中获得**一等奖**，实现了基于深度学习的光伏设施智能识别系统。
+本项目面向高分二号等高分辨率遥感影像中的光伏设施识别，构建了从数据准备、模型训练、批量推理到自动评测和错误样本复盘的完整工作流。项目采用 UNet 语义分割框架，对 ResNet50 与 MiT-B5 主干网络开展对照实验，并通过 Streamlit 封装为可交互的模型评测与预测平台。
 
-**核心亮点：**
-- 🏆 **国际大赛一等奖**：第六届国际高分辨率遥感图像智能解译大赛决赛一等奖
-- 📊 **高精度**：mIoU 达到 92.32%（MiT-B5 主干网络）
-- 🖥️ **可视化系统**：基于 Streamlit 的交互式对比与评测平台
-- 📄 **完整资料**：技术报告、海报、PPT 全部开源
+项目在**第六届国际高分辨率遥感图像智能解译大赛决赛**中获得**一等奖**。
 
-## 🚀 快速开始
+## ✨ 核心能力
 
-### 1. 环境配置
+- **模型训练**：支持 UNet-ResNet50 与 UNet-MiT-B5 的训练、验证和权重管理。
+- **单图评测**：并排展示原始影像、真实标签和不同模型预测结果，自动计算 IoU。
+- **批量机评**：批量推理并生成逐样本 IoU、模型差值和 CSV 评测报告。
+- **错误样本复盘**：按模型差异筛选 Top-K 样本，定位误检、漏检和边界偏差。
+- **结果可视化**：提供单图预测、批量预测、模型对比和结果浏览等交互界面。
+
+## 🖥️ 平台功能
+
+| 功能模块 | 说明 |
+|---|---|
+| 多模型对比 | 在同一影像上比较不同主干网络的预测结果与 IoU |
+| 批量评测 | 遍历测试集，输出 mIoU、逐图指标和 CSV 报告 |
+| 单张预测 | 上传遥感影像并查看光伏设施分割结果 |
+| 批量预测 | 对影像目录执行批量推理并统一保存成果 |
+| 结果浏览 | 分页浏览原图、标签和预测结果，复盘典型错误样本 |
+
+## 📊 评测结果
+
+| 模型 | 主干网络 | mIoU |
+|---|---|---:|
+| UNet-ResNet50 | ResNet50 | 91.83% |
+| **UNet-MiT-B5** | **MiT-B5** | **92.32%** |
+
+MiT-B5 方案较 ResNet50 参考方案提升 **0.49 个百分点**。以下样本按照两种模型的 IoU 差异筛选，用于展示边界完整性、漏检和误检差异。
+
+<p align="center">
+  <img src="assets/rank_03.png" alt="模型对比样本 03" width="900">
+</p>
+<p align="center">
+  <img src="assets/rank_26.png" alt="模型对比样本 26" width="900">
+</p>
+<p align="center">
+  <img src="assets/rank_40.png" alt="模型对比样本 40" width="900">
+</p>
+
+## 🚀 快速体验
+
+### 1. 安装环境
 
 ```bash
-# 克隆仓库
 git clone https://github.com/2839181579/SolarPV-Segmentation.git
 cd SolarPV-Segmentation
 
-# 创建虚拟环境（推荐）
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate  # Windows
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# Linux / macOS
+# source .venv/bin/activate
 
-# 安装依赖
 pip install -r requirements.txt
 ```
 
-### 2. 数据准备
-
-1. 下载数据集（见 [data/README.md](data/README.md)）
-2. 将数据放入 `data/VOCdevkit/VOC2007/` 目录
-3. 运行数据准备脚本：
+### 2. 启动可视化平台
 
 ```bash
-python src/prepare_data.py
-```
-
-### 3. 模型训练
-
-```bash
-# ResNet50 基线模型（mIoU 91.83%）
-python src/train.py
-
-# MiT-B5 进阶模型（mIoU 92.32%）
-python src/train_mitb5.py
-```
-
-### 4. 模型预测
-
-```bash
-# ResNet50 预测
-python src/predict.py
-
-# MiT-B5 预测
-python src/predict_mitb5.py
-```
-
-### 5. 可视化 Demo
-
-```bash
-# 启动 Streamlit 界面
 streamlit run demo/app.py
+```
 
-# 或使用启动脚本
+也可以运行：
+
+```bash
 python demo/launch.py
 ```
 
-## 📊 效果展示
+仓库自带 3 组样例影像与标签，可直接查看界面和数据格式。执行真实模型预测前，请将训练得到的权重放入 `weights/`，或在界面中选择本地权重文件。
 
-### 模型对比
+### 3. 训练与评测
 
-| 模型 | 主干网络 | mIoU | 参数量 | 推理速度 |
-|------|----------|------|--------|----------|
-| UNet-ResNet50 | ResNet50 | 91.83% | 32.5M | 45ms/张 |
-| UNet-MiT-B5 | MiT-B5 | **92.32%** | 84.3M | 68ms/张 |
+```bash
+# 数据划分
+python src/prepare_data.py
 
-### 可视化效果
+# ResNet50 与 MiT-B5 训练
+python src/train.py
+python src/train_mitb5.py
 
-**MiT-B5 vs ResNet50 对比展示**（MiT-B5 优势明显的样例）：
+# 预测与评测
+python src/predict.py
+python src/predict_mitb5.py
+python src/evaluate.py
+```
 
-<p align="center">
-  <img src="assets/rank_03.png" alt="Rank #3 - MiT-B5 完美预测" width="800">
-</p>
-<p align="center">
-  <em>Rank #3：MiT-B5 完美预测（IoU 100%），ResNet50 出现误检（IoU 0%）</em>
-</p>
-
-<p align="center">
-  <img src="assets/rank_14.png" alt="Rank #14 - MiT-B5 完美预测" width="800">
-</p>
-<p align="center">
-  <em>Rank #14：MiT-B5 完美预测（IoU 100%），ResNet50 出现误检（IoU 0%）</em>
-</p>
-
-<p align="center">
-  <img src="assets/rank_26.png" alt="Rank #26 - MiT-B5 高精度预测" width="800">
-</p>
-<p align="center">
-  <em>Rank #26：MiT-B5 高精度预测（IoU 80.93%），ResNet50 完全漏检（IoU 0%）</em>
-</p>
-
-<p align="center">
-  <img src="assets/rank_33.png" alt="Rank #33 - MiT-B5 明显优势" width="800">
-</p>
-<p align="center">
-  <em>Rank #33：MiT-B5 预测准确（IoU 77.96%），ResNet50 漏检严重（IoU 28.10%）</em>
-</p>
-
-<p align="center">
-  <img src="assets/rank_36.png" alt="Rank #36 - MiT-B5 明显优势" width="800">
-</p>
-<p align="center">
-  <em>Rank #36：MiT-B5 预测准确（IoU 80.63%），ResNet50 对齐偏差大（IoU 47.11%）</em>
-</p>
-
-<p align="center">
-  <img src="assets/rank_40.png" alt="Rank #40 - MiT-B5 明显优势" width="800">
-</p>
-<p align="center">
-  <em>Rank #40：MiT-B5 预测全面（IoU 68.78%），ResNet50 漏检部分目标（IoU 43.25%）</em>
-</p>
-
-> **说明**：以上展示的是 MiT-B5 模型相比 ResNet50 优势最明显的样例（按 IoU 差距排序）。每张对比图包含：原始卫星影像、真实标签、MiT-B5 预测结果、ResNet50 预测结果。
+完整数据集的目录规范和划分方式见 [data/README.md](data/README.md)，权重使用说明见 [weights/README.md](weights/README.md)。
 
 ## 📁 项目结构
 
-```
+```text
 SolarPV-Segmentation/
-├── src/                    # 源代码
-│   ├── train.py            # ResNet50 训练
-│   ├── train_mitb5.py      # MiT-B5 训练
-│   ├── predict.py          # 预测脚本
-│   ├── evaluate.py         # 评估脚本
-│   ├── models/             # 模型定义
-│   └── utils/              # 工具函数
-├── demo/                   # 可视化 Demo
-├── data/                   # 数据目录
-├── weights/                # 模型权重
-├── docs/                   # 文档资料
-└── assets/                 # 展示素材
+├── demo/                 # Streamlit 模型评测与预测平台
+├── src/                  # 训练、推理、评测与模型代码
+├── data/                 # 样例数据与数据准备说明
+├── weights/              # 本地模型权重目录（大文件不纳入 Git）
+├── assets/               # 平台截图与典型评测样本
+├── docs/                 # 技术报告与项目海报
+└── requirements.txt
 ```
 
-## 📚 文档资料
+## 📚 项目材料
 
-- 📄 [技术报告](docs/technical_report.pdf)
-- 🖼️ [项目海报](docs/poster.pdf)
-- 📊 [演示PPT](docs/slides.pptx)
-- 📝 [数据获取说明](data/README.md)
-- ⚖️ [模型权重说明](weights/README.md)
+- [技术报告](docs/technical_report.pdf)
+- [项目海报](docs/poster.pdf)
+- [数据说明](data/README.md)
+- [权重说明](weights/README.md)
+- [技术博客](blog/csdn_blog.md)
 
-## 🤝 贡献指南
+## ⚠️ 复现说明
 
-欢迎贡献！请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解如何参与。
+- 完整比赛数据与训练权重文件体积较大，且应遵守赛事数据使用要求，因此不直接纳入 Git 仓库。
+- 仓库提供样例影像、核心代码、评测结果、技术报告和界面，便于理解项目流程与复现方法。
+- README 中的指标来自比赛项目记录；不同硬件、随机种子和数据划分可能导致结果轻微波动。
 
-## 📜 许可证
+## 🙏 致谢与许可
 
-本项目基于 MIT 许可证开源，详见 [LICENSE](LICENSE)。
+本项目基于 [bubbliiiing/unet-pytorch](https://github.com/bubbliiiing/unet-pytorch) 改进，并使用 [segmentation_models_pytorch](https://github.com/qubvel/segmentation_models.pytorch) 提供的 MiT-B5 编码器实现。代码采用 [MIT License](LICENSE)。
 
-**注意**：本项目基于 [bubbliiiing/unet-pytorch](https://github.com/bubbliiiing/unet-pytorch) 改进，保留了原作者的版权声明。
-
-## 🙏 致谢
-
-- 感谢 [bubbliiiing](https://github.com/bubbliiiing) 提供的 UNet 基础实现
-- 感谢 [segmentation_models_pytorch](https://github.com/qubvel/segmentation_models.pytorch) 提供的 MiT-B5 主干网络
-- 感谢大赛组委会提供的数据集和评审
+如有问题，欢迎提交 [Issue](https://github.com/2839181579/SolarPV-Segmentation/issues)。
 
 ## 📝 Citation
 
-如果本项目对你的研究有帮助，请引用：
-
 ```bibtex
-@misc{solarpvsegmentation2025,
-  title={SolarPV-Segmentation: Deep Learning-based Solar PV Facility Intelligent Recognition},
-  author={Ma Shaobo},
-  year={2025},
-  howpublished={\url{https://github.com/2839181579/SolarPV-Segmentation}},
-  note={1st Place - 6th International High-Resolution RS Image Interpretation Contest}
+@misc{ma2025solarpv,
+  title        = {SolarPV-Segmentation: Solar PV Facility Segmentation and Evaluation Platform},
+  author       = {Ma, Shaobo},
+  year         = {2025},
+  howpublished = {GitHub},
+  url          = {https://github.com/2839181579/SolarPV-Segmentation}
 }
 ```
-
-或者在你的论文中引用：
-
-```
-Ma Shaobo. SolarPV-Segmentation: Deep Learning-based Solar PV Facility Intelligent Recognition. 
-GitHub Repository, 2025. https://github.com/2839181579/SolarPV-Segmentation
-```
-
-## 📧 联系方式
-
-如有问题，请通过以下方式联系：
-- 提交 [Issue](https://github.com/2839181579/SolarPV-Segmentation/issues)
-- 邮箱：mashaobo@example.com
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=2839181579/SolarPV-Segmentation&type=Date)](https://star-history.com/#2839181579/SolarPV-Segmentation&Date)
-
----
-
-<p align="center">
-  如果觉得有帮助，请给个 ⭐ 支持一下！
-</p>
