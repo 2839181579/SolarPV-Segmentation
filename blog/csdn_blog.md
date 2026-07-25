@@ -35,11 +35,10 @@
 
 ### 2.2 主干网络对比
 
-| 主干网络 | 架构 | mIoU | 参数量 | 推理速度 |
-|----------|------|------|--------|----------|
-| ResNet50 | CNN | 91.83% | 32.5M | 45ms/张 |
-| VGG | CNN | 89.5% | 20.1M | 38ms/张 |
-| **MiT-B5** | **Transformer** | **92.32%** | 84.3M | 68ms/张 |
+| 主干网络 | 架构 | 项目记录 mIoU |
+|----------|------|---------------:|
+| ResNet50 | CNN | 91.83% |
+| **MiT-B5** | **Transformer** | **92.32%** |
 
 ### 2.3 为什么选择 MiT-B5？
 
@@ -87,10 +86,10 @@ python src/predict_mitb5.py
 
 ### 3.1 定量结果
 
-| 模型 | 主干网络 | mIoU | 参数量 | 推理速度 |
-|------|----------|------|--------|----------|
-| UNet-ResNet50 | ResNet50 | 91.83% | 32.5M | 45ms/张 |
-| UNet-MiT-B5 | MiT-B5 | **92.32%** | 84.3M | 68ms/张 |
+| 模型 | 主干网络 | 项目记录 mIoU |
+|------|----------|---------------:|
+| UNet-ResNet50 | ResNet50 | 91.83% |
+| UNet-MiT-B5 | MiT-B5 | **92.32%** |
 
 ### 3.2 定性结果
 
@@ -170,7 +169,7 @@ pip install -r requirements.txt
 
 ### 5.2 数据准备
 
-1. 下载数据集（百度网盘链接见 README）
+1. 通过赛事官方渠道按数据使用要求获取完整数据，或先使用仓库样例数据检查格式
 2. 将数据放入 `data/VOCdevkit/VOC2007/` 目录
 3. 运行数据准备脚本：
 
@@ -209,11 +208,10 @@ streamlit run demo/app.py
 
 - 📄 [技术报告](https://github.com/2839181579/SolarPV-Segmentation/blob/main/docs/technical_report.pdf)
 - 🖼️ [项目海报](https://github.com/2839181579/SolarPV-Segmentation/blob/main/docs/poster.pdf)
-- 📊 [演示PPT](https://github.com/2839181579/SolarPV-Segmentation/blob/main/docs/slides.pptx)
 
 ### 6.3 数据集
 
-- **完整数据集**：百度网盘下载（链接见 README）
+- **完整数据集**：请通过赛事官方渠道按数据使用要求获取
 - **样例数据**：仓库中提供 3 张样例图片
 
 ---
@@ -253,7 +251,6 @@ streamlit run demo/app.py
 如有问题，欢迎通过以下方式联系：
 
 - **GitHub Issue**：[提交 Issue](https://github.com/2839181579/SolarPV-Segmentation/issues)
-- **邮箱**：mashaobo@example.com
 
 ---
 
