@@ -20,7 +20,7 @@ from torch.utils.data import DataLoader
 # 导入 SMP
 import segmentation_models_pytorch as smp
 
-from nets.unet_training import get_lr_scheduler, set_optimizer_lr
+from models.unet_training import get_lr_scheduler, set_optimizer_lr
 from utils.callbacks import LossHistory, EvalCallback
 from utils.dataloader import UnetDataset, unet_dataset_collate
 from utils.utils import download_weights, show_config
