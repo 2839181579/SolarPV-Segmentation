@@ -2,12 +2,12 @@ import os
 import sys
 import subprocess
 
-# 1. 确定你的 Streamlit 界面文件名
-# ui_filename = "可视化预测界面.py"
-ui_filename = "可视化对比.py"
+# 1. 确定 Streamlit 界面文件与项目根目录
+ui_filename = "app.py"
 
 # 2. 获取当前文件夹路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
 script_path = os.path.join(current_dir, ui_filename)
 
 # 3. 检查文件是否存在
@@ -27,7 +27,7 @@ print("-" * 50)
 try:
     subprocess.run(
         [sys.executable, "-m", "streamlit", "run", ui_filename],
-        cwd=current_dir,  # 【关键】确保运行目录正确
+        cwd=project_root,
         check=True
     )
 except KeyboardInterrupt:

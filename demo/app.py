@@ -7,8 +7,15 @@ import tkinter as tk
 from tkinter import filedialog
 import subprocess
 import sys
+from pathlib import Path
 import pandas as pd  # 用于数据统计
 import math
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+SRC_DIR = PROJECT_ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
 
 # ===========================================================================
@@ -168,7 +175,7 @@ def concat_images_horizontal(images, labels=None, padding=10, bg_color=(255, 255
 try:
     from unet import Unet
 except ImportError:
-    st.error("❌ 无法导入 'unet' 模块。请确保此文件与 'unet.py' 在同一个文件夹内。")
+    st.error("❌ 无法导入模型模块，请确认仓库中的 src/ 目录完整并已安装 requirements.txt。")
     st.stop()
 
 # ===========================================================================
@@ -195,12 +202,12 @@ if 'viewer_page' not in st.session_state:
 # ===========================================================================
 #   【核心配置】默认路径设置
 # ===========================================================================
-DEFAULT_MODEL_A = r"D:\006–马少博-基于深度学习的光伏设施智能识别-2025-P01-A\2.源代码\UNet_Demo\model_data\Mit-B5-UNet-Champion-92-32.pth"
-DEFAULT_MODEL_B = r"D:\006–马少博-基于深度学习的光伏设施智能识别-2025-P01-A\2.源代码\UNet_Demo\model_data\ResNet50-UNet-Champion_model_91.83.pth"
-DEFAULT_INPUT_DIR = r"D:\006–马少博-基于深度学习的光伏设施智能识别-2025-P01-A\2.源代码\UNet_Demo\0train\images"
-DEFAULT_MASK_DIR = r"D:\006–马少博-基于深度学习的光伏设施智能识别-2025-P01-A\2.源代码\UNet_Demo\0train\mask"
-DEFAULT_OUTPUT_DIR = r"D:\006–马少博-基于深度学习的光伏设施智能识别-2025-P01-A\2.源代码\UNet_Demo\img_out"
-DEFAULT_EVAL_DIR = r"D:\006–马少博-基于深度学习的光伏设施智能识别-2025-P01-A\2.源代码\UNet_Demo\eval_result"
+DEFAULT_MODEL_A = "weights/Mit-B5-UNet-Champion-92-32.pth"
+DEFAULT_MODEL_B = "weights/ResNet50-UNet-Champion_model_91.83.pth"
+DEFAULT_INPUT_DIR = "data/sample/images"
+DEFAULT_MASK_DIR = "data/sample/masks"
+DEFAULT_OUTPUT_DIR = "output"
+DEFAULT_EVAL_DIR = "output/eval_result"
 
 # 批量注册 Session State 变量
 defaults = {
