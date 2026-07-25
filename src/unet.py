@@ -14,7 +14,7 @@ from torch import nn
 # ---------------------------------------------------#
 import segmentation_models_pytorch as smp
 
-# 这里的 unet 是 nets/unet.py 里的老模型定义
+# 这里的 unet 是 models/unet.py 里的经典 UNet 模型定义
 from models.unet import Unet as Unet_Old
 from utils.utils import cvtColor, preprocess_input, resize_image, show_config
 
